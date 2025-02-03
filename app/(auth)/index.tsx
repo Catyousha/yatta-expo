@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { Button, Input, SizableText, Text, XStack, YStack } from "tamagui";
+import { Button, Input, SizableText, XStack, YStack } from "tamagui";
 
 export default function Index() {
   return (

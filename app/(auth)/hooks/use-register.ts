@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { TextInput } from "react-native";
+import { supabase } from "@/utils/supabase";
+import { router } from "expo-router";
+import { useState } from "react";
+import { Alert } from "react-native";
 
 export const useRegister = () => {
   const [email, setEmail] = useState("");
@@ -8,15 +10,25 @@ export const useRegister = () => {
 
   const isValid = confirmPass === pass && email !== "" && pass !== "";
 
-  const onSubmit = () => {
-    alert(`${email} ${pass}`);
-  }
+  const onSubmit = async () => {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password: pass,
+    });
+
+    if (error) {
+      Alert.alert(error.message);
+    } else {
+      Alert.alert('Successfully registered!');
+      router.replace('/(auth)');
+    }
+  };
 
   return {
     setEmail,
     setPass,
     setConfirmPass,
     isValid,
-    onSubmit
+    onSubmit,
   };
 };
