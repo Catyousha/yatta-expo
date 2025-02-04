@@ -17,6 +17,7 @@ AppState.addEventListener('change', (state) => {
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
+  
   return (
     <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme!}>
       <Stack>

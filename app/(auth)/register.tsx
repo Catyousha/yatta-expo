@@ -1,15 +1,10 @@
 import { router } from "expo-router";
-import { Button, Input, SizableText, XStack, YStack } from "tamagui";
-import { useRegister } from "./hooks/use-register";
+import { Button, Input, SizableText, Spinner, XStack, YStack } from "tamagui";
+import useRegister from "./hooks/use-register";
 
 export default function RegisterScreen() {
-  const {
-    setEmail,
-    setPass,
-    setConfirmPass,
-    isValid,
-    onSubmit
-  } = useRegister();
+  const { setEmail, setPass, setConfirmPass, isValid, onSubmit, isLoading } =
+    useRegister();
   return (
     <YStack
       gap="$4"
@@ -47,6 +42,10 @@ export default function RegisterScreen() {
           {...(!isValid && {
             disabled: true,
             opacity: 0.5,
+          })}
+          {...(isLoading && {
+            disabled: true,
+            icon: <Spinner />,
           })}
           onPress={onSubmit}
         >
