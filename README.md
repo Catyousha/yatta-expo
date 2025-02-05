@@ -6,12 +6,14 @@ run script etc? just check `package.json`
 
 ### personal log (dd/mm/yyyy):
 
-05/02/2024
+05/02/2025
+- implement google auth from 'expo-auth-session' instead of 'react-native-google-signin'
+
 - stuck in "Welcome to Expo" screen solved by put codebase into /src dir.
 
     - dotenv still not working.
 
-04/02/2024
+04/02/2025
 
 - run compiled app / `npx expo run:ios` stuck in "Welcome to Expo" screen.
 
@@ -19,4 +21,4 @@ run script etc? just check `package.json`
 
     - isn't there Expo Go / `npx expo start`, you ask?
 
-        - that ass runner couldn't use Google Sign In.
+        - that ass runner couldn't use library built on custom native code.

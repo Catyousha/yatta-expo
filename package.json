@@ -24,6 +24,7 @@
     "@tamagui/config": "^1.123.8",
     "@tamagui/lucide-icons": "^1.123.8",
     "expo": "~52.0.25",
+    "expo-auth-session": "^6.0.3",
     "expo-blur": "~14.0.2",
     "expo-constants": "~17.0.4",
     "expo-font": "~13.0.3",

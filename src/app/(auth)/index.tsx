@@ -3,9 +3,10 @@ import { Button, Input, SizableText, Spinner, XStack, YStack } from "tamagui";
 import useLogin from "./hooks/use-login";
 import { useEffect } from "react";
 import { supabase } from "@/src/utils/supabase";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 export default function Index() {
-  const { setEmail, setPass, isLoading, onSubmit } = useLogin();
+  const { setEmail, setPass, isLoading, onSubmit, promptAsync } = useLogin();
   useEffect(() => {
     const checkSession = async () => {
       const session = await supabase.auth.getSession();
@@ -16,7 +17,7 @@ export default function Index() {
 
     checkSession();
   }, []);
-  
+
   return (
     <YStack
       gap="$4"
@@ -29,6 +30,10 @@ export default function Index() {
       <SizableText size="$8" text="center" fontWeight="500">
         Login
       </SizableText>
+
+      <Button onPress={() => promptAsync()} icon={<AntDesign name="google" />}>
+        Login With Google
+      </Button>
 
       <YStack gap="$2">
         <Input

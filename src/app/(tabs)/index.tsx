@@ -13,7 +13,7 @@ import { ImageSource } from "expo-image";
 import EmojiList from "@/src/components/EmojiList";
 import EmojiSticker from "@/src/components/EmojiSticker";
 import { YStack, Button } from "tamagui";
-import { Image } from '@tamagui/lucide-icons'
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const PlaceholderImage = require("@/assets/images/background-image.png");
 
@@ -110,8 +110,12 @@ export default function Index() {
         </View>
       ) : (
         <YStack gap="$2" style={styles.optionsContainer}>
-          <Button size='$5' icon={Image} onPress={pickImageAsync}>Choose a photo</Button>
-          <Button size='$5' variant='outlined' color='white'>Use this photo </Button>
+          <Button size="$5" icon={<MaterialIcons name="photo" />}>
+            Choose an Image
+          </Button>
+          <Button size="$5" variant="outlined" color="white">
+            Use this photo{" "}
+          </Button>
         </YStack>
       )}
       <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
