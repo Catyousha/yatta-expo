@@ -1,10 +1,15 @@
 # Yet Another Thriving on Tutorial Application (YATTA): React Native (Expo)
-![i miss filthyprank so much](https://media.tenor.com/vBAMl2CDJw8AAAAM/filthy-frank-yatta.gif)
+![i miss filthyfrank so much](https://media.tenor.com/vBAMl2CDJw8AAAAM/filthy-frank-yatta.gif)
 
 
 run script etc? just check `package.json`
 
 ### personal log (dd/mm/yyyy):
+
+05/02/2024
+- stuck in "Welcome to Expo" screen solved by put codebase into /src dir.
+
+    - dotenv still not working.
 
 04/02/2024
 

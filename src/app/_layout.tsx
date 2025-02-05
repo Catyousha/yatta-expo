@@ -3,8 +3,8 @@ import { StatusBar } from "expo-status-bar";
 import { AppState, useColorScheme } from "react-native";
 import { TamaguiProvider } from "tamagui";
 
-import { tamaguiConfig } from "../tamagui.config";
-import { supabase } from "@/utils/supabase";
+import { tamaguiConfig } from "../../tamagui.config";
+import { supabase } from "../utils/supabase";
 
 AppState.addEventListener('change', (state) => {
   if(state === 'active') {

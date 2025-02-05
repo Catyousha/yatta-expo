@@ -5,13 +5,13 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useRef, useState } from "react";
 import { captureRef } from "react-native-view-shot";
 
-import ImageViewer from "@/components/ImageViewer";
-import IconButton from "@/components/IconButton";
-import CircleButton from "@/components/CircleButton";
-import EmojiPicker from "@/components/EmojiPicker";
+import ImageViewer from "@/src/components/ImageViewer";
+import IconButton from "@/src/components/IconButton";
+import CircleButton from "@/src/components/CircleButton";
+import EmojiPicker from "@/src/components/EmojiPicker";
 import { ImageSource } from "expo-image";
-import EmojiList from "@/components/EmojiList";
-import EmojiSticker from "@/components/EmojiSticker";
+import EmojiList from "@/src/components/EmojiList";
+import EmojiSticker from "@/src/components/EmojiSticker";
 import { YStack, Button } from "tamagui";
 import { Image } from '@tamagui/lucide-icons'
 

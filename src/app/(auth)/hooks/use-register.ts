@@ -1,4 +1,4 @@
-import { supabase } from "@/utils/supabase";
+import { supabase } from "@/src/utils/supabase";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Alert } from "react-native";

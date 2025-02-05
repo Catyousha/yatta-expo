@@ -2,7 +2,7 @@ import { router } from "expo-router";
 import { Button, Input, SizableText, Spinner, XStack, YStack } from "tamagui";
 import useLogin from "./hooks/use-login";
 import { useEffect } from "react";
-import { supabase } from "@/utils/supabase";
+import { supabase } from "@/src/utils/supabase";
 
 export default function Index() {
   const { setEmail, setPass, isLoading, onSubmit } = useLogin();
