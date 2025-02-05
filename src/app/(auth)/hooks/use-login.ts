@@ -33,11 +33,13 @@ const useLogin = () => {
 
   const onLoginGoogle = async () => {
     if (response?.type !== "success") return;
+    setIsLoading(true)
     const token = response.authentication?.idToken;
     const { data, error } = await supabase.auth.signInWithIdToken({
       provider: "google",
       token: token!,
     });
+    setIsLoading(false);
     if (!error) {
       router.replace("/(tabs)");
     } else {

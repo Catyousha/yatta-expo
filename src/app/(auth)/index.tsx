@@ -11,11 +11,11 @@ export default function Index() {
     const checkSession = async () => {
       const session = await supabase.auth.getSession();
       if (session.data?.session) {
-        router.replace('/(tabs)');
+        router.replace("/(tabs)");
       }
     };
 
-    checkSession();
+    // checkSession();
   }, []);
 
   return (
@@ -31,7 +31,10 @@ export default function Index() {
         Login
       </SizableText>
 
-      <Button onPress={() => promptAsync()} icon={<AntDesign name="google" />}>
+      <Button
+        onPress={() => (isLoading ? {} : promptAsync())}
+        icon={<AntDesign name="google" />}
+      >
         Login With Google
       </Button>
 

@@ -110,11 +110,23 @@ export default function Index() {
         </View>
       ) : (
         <YStack gap="$2" style={styles.optionsContainer}>
-          <Button size="$5" icon={<MaterialIcons name="photo" />}>
+          <Button
+            size="$5"
+            icon={<MaterialIcons name="photo" />}
+            onPress={() => pickImageAsync()}
+          >
             Choose an Image
           </Button>
-          <Button size="$5" variant="outlined" color="white">
-            Use this photo{" "}
+          <Button
+            size="$5"
+            variant="outlined"
+            color="white"
+            onPress={() => {
+              setSelectedImage(PlaceholderImage);
+              setIsShowAppOptions(true);
+            }}
+          >
+            Use this photo
           </Button>
         </YStack>
       )}
