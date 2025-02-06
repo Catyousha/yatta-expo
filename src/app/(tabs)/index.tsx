@@ -12,8 +12,10 @@ import EmojiPicker from "@/src/components/EmojiPicker";
 import { ImageSource } from "expo-image";
 import EmojiList from "@/src/components/EmojiList";
 import EmojiSticker from "@/src/components/EmojiSticker";
-import { YStack, Button } from "tamagui";
+import { YStack, Button, Text } from "tamagui";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 const PlaceholderImage = require("@/assets/images/background-image.png");
 
@@ -79,61 +81,64 @@ export default function Index() {
   };
 
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <View style={styles.imageContainer}>
-        <View ref={imageRef} collapsable={false}>
-          <ImageViewer
-            imgSource={selectedImage ?? PlaceholderImage}
-            onLayout={(width, height) => setImageSize({ width, height })}
-          />
-          {pickedEmoji && (
-            <EmojiSticker
-              imageSize={40}
-              stickerSource={pickedEmoji}
-              containerWidth={imageSize.width}
-              containerHeight={imageSize.height}
+    <SafeAreaView style={styles.container}>
+      <GestureHandlerRootView >
+        <Text mb='$3' color='white' fontSize='$4' onPress={() => router.back()}>{'← Back'}</Text>
+        <View style={styles.imageContainer}>
+          <View ref={imageRef} collapsable={false}>
+            <ImageViewer
+              imgSource={selectedImage ?? PlaceholderImage}
+              onLayout={(width, height) => setImageSize({ width, height })}
             />
-          )}
-        </View>
-      </View>
-      {isShowAppOptions ? (
-        <View style={styles.optionsContainer}>
-          <View style={styles.optionsRow}>
-            <IconButton icon="refresh" label="Reset" onPress={onReset} />
-            <CircleButton onPress={onAddSticker} />
-            <IconButton
-              icon="save-alt"
-              label="Save"
-              onPress={onSaveImageAsync}
-            />
+            {pickedEmoji && (
+              <EmojiSticker
+                imageSize={40}
+                stickerSource={pickedEmoji}
+                containerWidth={imageSize.width}
+                containerHeight={imageSize.height}
+              />
+            )}
           </View>
         </View>
-      ) : (
-        <YStack gap="$2" style={styles.optionsContainer}>
-          <Button
-            size="$5"
-            icon={<MaterialIcons name="photo" />}
-            onPress={() => pickImageAsync()}
-          >
-            Choose an Image
-          </Button>
-          <Button
-            size="$5"
-            variant="outlined"
-            color="white"
-            onPress={() => {
-              setSelectedImage(PlaceholderImage);
-              setIsShowAppOptions(true);
-            }}
-          >
-            Use this photo
-          </Button>
-        </YStack>
-      )}
-      <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
-        <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
-      </EmojiPicker>
-    </GestureHandlerRootView>
+        {isShowAppOptions ? (
+          <View style={styles.optionsContainer}>
+            <View style={styles.optionsRow}>
+              <IconButton icon="refresh" label="Reset" onPress={onReset} />
+              <CircleButton onPress={onAddSticker} />
+              <IconButton
+                icon="save-alt"
+                label="Save"
+                onPress={onSaveImageAsync}
+              />
+            </View>
+          </View>
+        ) : (
+          <YStack gap="$2" style={styles.optionsContainer}>
+            <Button
+              size="$5"
+              icon={<MaterialIcons name="photo" />}
+              onPress={() => pickImageAsync()}
+            >
+              Choose an Image
+            </Button>
+            <Button
+              size="$5"
+              variant="outlined"
+              color="white"
+              onPress={() => {
+                setSelectedImage(selectedImage ?? PlaceholderImage);
+                setIsShowAppOptions(true);
+              }}
+            >
+              Use this photo
+            </Button>
+          </YStack>
+        )}
+        <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
+          <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
+        </EmojiPicker>
+      </GestureHandlerRootView>
+    </SafeAreaView>
   );
 }
 
@@ -143,13 +148,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#25292e",
     justifyContent: "center",
     alignItems: "center",
+    width: '100%'
   },
   imageContainer: {
     flex: 1,
   },
   optionsContainer: {
-    position: "absolute",
-    bottom: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 60,
   },
   optionsRow: {
     alignItems: "center",

@@ -1,13 +1,15 @@
 import { supabase } from "@/src/utils/supabase";
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Alert } from "react-native";
 import * as Google from "expo-auth-session/providers/google";
+import { AuthContext } from "@/src/providers/AuthProvider";
 
 const useLogin = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const authContext = useContext(AuthContext);
 
   const onSubmit = async () => {
     if (email === "" || pass === "") return;
@@ -21,7 +23,8 @@ const useLogin = () => {
     if (error) {
       Alert.alert(error.message);
     } else {
-      router.replace("/(tabs)");
+      authContext.setUser?.(data.user);
+      router.replace("/(home)");
     }
   };
 
@@ -41,7 +44,8 @@ const useLogin = () => {
     });
     setIsLoading(false);
     if (!error) {
-      router.replace("/(tabs)");
+      authContext.setUser?.(data.user);
+      router.replace("/(home)");
     } else {
       Alert.alert(error.message);
     }

@@ -22,7 +22,7 @@ export default function ImageViewer(props: Props) {
 const styles = StyleSheet.create({
   image: {
     width: 320,
-    height: 440,
+    aspectRatio: 9/16,
     borderRadius: 18,
   },
 });

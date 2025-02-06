@@ -1,21 +1,24 @@
 import { router } from "expo-router";
 import { Button, Input, SizableText, Spinner, XStack, YStack } from "tamagui";
 import useLogin from "./hooks/use-login";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { supabase } from "@/src/utils/supabase";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { AuthContext } from "@/src/providers/AuthProvider";
 
 export default function Index() {
   const { setEmail, setPass, isLoading, onSubmit, promptAsync } = useLogin();
+  const authContext = useContext(AuthContext);
   useEffect(() => {
     const checkSession = async () => {
-      const session = await supabase.auth.getSession();
-      if (session.data?.session) {
-        router.replace("/(tabs)");
+      const user = await supabase.auth.getUser();
+      if (user) {
+        authContext.setUser?.(user.data.user!);
+        router.replace("/(home)");
       }
     };
 
-    // checkSession();
+    checkSession();
   }, []);
 
   return (
